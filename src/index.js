@@ -21,11 +21,11 @@ app.set('views', './src/views');
 
 app.use(express.static('public'));
 
-const userRoutes = require('./routes/user-routes');
-app.use('/users', userRoutes);
+const usuarioRoutes = require('./routes/usuario-routes');
+app.use('/usuarios', usuarioRoutes);
 
-const postsRoutes = require('./routes/post-routes');
-app.use('/posts', postsRoutes);
+const timesRoutes = require('./routes/time-routes');
+app.use('/times', timesRoutes);
 
 app.listen(3000, () => {
     console.log('Listening at 3000');

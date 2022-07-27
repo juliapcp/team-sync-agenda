@@ -2,16 +2,19 @@ const { DataTypes, Model } = require('sequelize');
 
 const { sequelizeCon } = require('../config/db-config');
 
-class User extends Model {}
+class Usuario extends Model {}
     
-User.init({
+Usuario.init({
     nome: DataTypes.STRING,
     email: DataTypes.STRING,
     senha: DataTypes.STRING
 }, { 
     sequelize: sequelizeCon, 
-    schema: 'aula-remota',
-    modelName: 'user'
+    schema: 'public',
+    modelName: 'usuario',
+    createdAt: 'created_at',
+    updatedAt: false,
+    timestamps: true
 });
 
-module.exports = { User };
+module.exports = { Usuario };
