@@ -9,6 +9,10 @@ const timesController = new TimesController();
 
 routes.get('/', timesController.listar);
 
+routes.get('/cadastrar', timesController.mostraCadastro);
+
+routes.post('/cadastrar', timesController.cadastrar);
+
 routes.post('/', isAuth, upload.single('meuarquivo'), timesController.cadastrar);
 
 module.exports = routes;

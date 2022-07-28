@@ -5,12 +5,10 @@ const { Time } = require('../models/Time');
 class TimesController {
 
     async cadastrar(req, res) {
-        console.log('TimesController/cadastrar', req.body);
-
         const times = await Time.create({
             nome: req.body.nome,
             descricao: req.body.descricao,
-            idresponsavel: req.body.idresponsavel
+            idresponsavel: 2
         });
 
 
@@ -18,12 +16,13 @@ class TimesController {
     }
 
     async listar(req, res) {    
-        console.log('TimesController/listar');
-
         const times = await Time.findAll();
-        return res.render('index', {times});
+        return res.render('time/listagem', {times});
     }
 
+    async mostraCadastro(req, res) {
+        return res.render('time/cadastro');
+    }
 }
 
 module.exports = TimesController;

@@ -7,7 +7,7 @@ const routes = Router();
 
 const usuariosController = new UsuariosController();
 
-routes.get('/profile', isAuth, usuariosController.detalhar);
+routes.get('/perfil', isAuth, usuariosController.detalhar);
 
 routes.get('/listagem', async (req, res) => {
     const lista = await Usuario.findAll();

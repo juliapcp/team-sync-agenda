@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const { restart } = require('nodemon');
 const { Time } = require('../models/Time');
 const { Usuario } = require('../models/Usuario');
 
@@ -12,8 +13,7 @@ class UsuariosController {
             },
             include: [Time]
         })
-
-        return res.send(`<pre>${JSON.stringify(usuario, null, 2)}</pre>`); 
+        return res.render('usuario/perfil', { usuario });
     }
 
 
