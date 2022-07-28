@@ -21,7 +21,7 @@ class TimesController {
         console.log('TimesController/listar');
 
         const times = await Time.findAll();
-        return res.send(JSON.stringify(times));
+        return res.render('index', {times});
     }
 
 }
