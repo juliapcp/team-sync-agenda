@@ -1,16 +1,25 @@
 const bcrypt = require('bcrypt');
 const { Time } = require('../models/Time');
+const { Usuario } = require('../models/Usuario');
+const { UsuarioTime } = require('../models/UsuarioTime');
 
 
 class TimesController {
 
     async cadastrar(req, res) {
-        const times = await Time.create({
+        const time = await Time.create({
             nome: req.body.nome,
             descricao: req.body.descricao,
-            idresponsavel: 2
+            idresponsavel: 2 //TODO
         });
-
+    
+        console.log(time);
+        for(let membro of req.body.membros){
+            const usuarioTime = await UsuarioTime.create({
+                timeId: time.id,
+                usuarioId: membro
+            });
+        }
 
         res.redirect('/times');
     }
@@ -21,7 +30,10 @@ class TimesController {
     }
 
     async mostraCadastro(req, res) {
-        return res.render('time/cadastro');
+        const usuarios = (await Usuario.findAll()).filter(function (usuario) {
+            return usuario.id !== req.session.usuario;
+        });
+        return res.render('time/cadastro', {usuarios});
     }
 }
 

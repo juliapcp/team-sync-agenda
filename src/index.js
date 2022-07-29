@@ -27,6 +27,9 @@ app.use('/usuarios', usuarioRoutes);
 const timesRoutes = require('./routes/time-routes');
 app.use('/times', timesRoutes);
 
+const calendarioRoutes = require('./routes/calendario-routes');
+app.use('/calendario', calendarioRoutes);
+
 app.listen(3000, () => {
     console.log('Listening at 3000');
 })
