@@ -5,14 +5,14 @@
             <div class="bg-gray-900 px-2 lg:px-4 py-2 lg:py-10 sm:rounded-xl flex lg:flex-col justify-between">
                 <nav class="flex items-center flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
                     <a class="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover"
-                        href="#">
+                        href="/calendario/index">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path
                                 d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                         </svg>
                     </a>
-                    <a class="bg-gray-800 text-white p-4 inline-flex justify-center rounded-md" href="#">
+                    <a class="bg-gray-800 text-white p-4 inline-flex justify-center rounded-md" href="/times">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path
@@ -22,7 +22,7 @@
                 </nav>
                 <div class="flex items-center flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
                     <a class="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover"
-                        href="#">
+                        href="/usuarios/perfil">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
@@ -31,7 +31,7 @@
                         </svg>
                     </a>
                     <a class="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover"
-                        href="#">
+                        href="/usuarios/logout">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
@@ -41,41 +41,51 @@
                     </a>
                 </div>
             </div>
-            <!-- Content -->
             <div class="flex-1 px-2 sm:px-0">
                 <div class="flex justify-between items-center">
                     <h3 class="text-3xl font-extralight text-white/50">Times</h3>
 
                 </div>
                 <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    <div
-                        class="group bg-gray-900/30 py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md hover:bg-gray-900/40 hover:smooth-hover">
-                        <a class="bg-gray-900/70 text-white/50 group-hover:text-white group-hover:smooth-hover flex w-20 h-20 rounded-full items-center justify-center"
-                            href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                        </a>
-                        <a class="text-white/50 group-hover:text-white group-hover:smooth-hover text-center"
-                            href="#">Criar
-                            time</a>
-                    </div>
-                    <% times.forEach(time=> { %>
-                        <div
-                            class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md hover:bg-gray-900/80 hover:smooth-hover">
-                            <img class="w-20 h-20 object-cover object-center rounded-full"
-                                src="icons/letra-<%=time.nome.substring(0,1)%>.png" alt="icone" />
-                            <h4 class="text-white text-2xl font-bold capitalize text-center">
-                                <%= time.nome%>
-                            </h4>
-                            <p class="text-white/50">
-                                <%= time.descricao%>
-                            </p>
-                        </div>
-                        <% }) %>
-
+                    <form action="/times/cadastrar" method="POST">
+                        <table style="width:100%;">
+                            <tbody>
+                                <tr>
+                                    <td><label class="font-extralight text-white/50" for="nome">Nome: </label></td>
+                                    <td><label class="font-extralight text-white/50" for="descricao">Descricao: </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input name="nome" type="text" id="nome"
+                                            class="w3-white w3-border w3-round-large" placeholder="Nome" autofocus>
+                                    </td>
+                                    <td>
+                                        <input name="descricao" type="text" id="descricao"
+                                            class="w3-white w3-border w3-round-large" placeholder="Descrição" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><label class="font-extralight text-white/50" for="membros">Membros:
+                                        </label></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <select class="multiselect" id="membros" name="membros[]" multiple="multiple"
+                                            style="width: 100%;">
+                                            <option value="">Teste</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <button style=" margin-left: 74%;" type="submit"
+                                            class="w3-button w3-green">Cadastrar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>

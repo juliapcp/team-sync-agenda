@@ -41,20 +41,62 @@
                     </a>
                 </div>
             </div>
-            <!-- Content -->
             <div class="flex-1 px-2 sm:px-0">
                 <div class="flex justify-between items-center">
                     <h3 class="text-3xl font-extralight text-white/50">Times</h3>
 
                 </div>
                 <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                        <form action="/times/cadastrar" method="POST">
-                                            <input name="nome" type="text" id="nome" class="form-control" placeholder="Nome" autofocus>
-                            <input name="descricao" type="text" id="descricao" class="form-control" placeholder="Descrição" required>
-                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Cadastrar</button>
+                    <div class="wrap-login100 p-t-5 p-b-90">
+                        <form class="login100-form validate-form flex-sb flex-w" action="/times/cadastrar"
+                            method="POST">
+                            <table style="width:100%;">
+                                <tbody>
+                                    <tr>
+                                        <td><label class="font-extralight text-white/50" for="nome">Nome: </label></td>
+                                        <td><label class="font-extralight text-white/50" for="descricao">Descricao:
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <input name="nome" type="text" id="nome"
+                                                class="w3-white w3-border w3-round-large" placeholder="Nome" autofocus>
+
+                                        </td>
+                                        <td>
+                                            <input name="descricao" type="text" id="descricao"
+                                                class="w3-white w3-border w3-round-large" placeholder="Descrição"
+                                                required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><label class="font-extralight text-white/50"
+                                                for="membros">Membros:
+                                            </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <select class="multiselect" id="membros" name="membros[]"
+                                                multiple="multiple" style="width: 100%;">
+                                                <option value="">Teste</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button style=" margin-left: 74%;" type="submit"
+                                                class="w3-button w3-green">Cadastrar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <%- include('../includes/footer') %>
+    
+<%- include('../includes/footer') %>
