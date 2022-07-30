@@ -7,11 +7,11 @@ const routes = Router();
 
 const timesController = new TimesController();
 
-routes.get('/', timesController.listar);
+routes.get('/', isAuth, timesController.listar);
 
-routes.get('/cadastrar', timesController.mostraCadastro);
+routes.get('/cadastrar', isAuth, timesController.mostraCadastro);
 
-routes.post('/cadastrar', timesController.cadastrar);
+routes.post('/cadastrar', isAuth, timesController.cadastrar);
 
 routes.post('/', isAuth, upload.single('meuarquivo'), timesController.cadastrar);
 

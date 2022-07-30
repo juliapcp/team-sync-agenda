@@ -1308,3 +1308,7 @@ video {
         padding-bottom: 2.5rem
     }
 }
+.icone {
+    border-radius: 50%;
+    width: 40px;
+}

@@ -1,6 +1,9 @@
 const isAuth = (req, res, next) => {
-    if (req.session.user /* && req.session.user.type == 'admin' */) return next();
-    return res.status(403).send('NAO ESTA LOGADO');
+    if (req.session.usuario){
+        res.locals.usuario = req.session.usuario;
+        return next();
+    } 
+    return res.status(403).redirect('/usuarios/login');
 }
 
 module.exports = { isAuth };

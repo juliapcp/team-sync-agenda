@@ -7,7 +7,8 @@ class Usuario extends Model {}
 Usuario.init({
     nome: DataTypes.STRING,
     email: DataTypes.STRING,
-    senha: DataTypes.STRING
+    senha: DataTypes.STRING,
+    imagem: DataTypes.STRING
 }, { 
     sequelize: sequelizeCon, 
     schema: 'public',
