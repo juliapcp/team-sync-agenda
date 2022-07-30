@@ -3,18 +3,18 @@
 <link rel="stylesheet" href="/css/style.css">
     <div class="bg-gray-900 min-h-screen flex items-center justify-center">
         <div
-            class="bg-gray-800 flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 max-w-6xl sm:p-6 sm:my-2 sm:mx-4 sm:rounded-2xl">
+            class="bg-gray-800 flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 max-w-7xl sm:p-6 sm:my-2 sm:mx-4 sm:rounded-2xl">
             <div class="bg-gray-900 px-2 lg:px-4 py-2 lg:py-10 sm:rounded-xl flex lg:flex-col justify-between">
                 <nav class="flex items-center flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
-                    <a class="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover"
-                        href="/calendario/index">
+                    <a class="bg-gray-800 text-white p-4 inline-flex justify-center rounded-md"
+                        href="/calendario/<%=new Date().toISOString().slice(0, 10)%>">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path
                                 d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                         </svg>
                     </a>
-                    <a class="bg-gray-800 text-white p-4 inline-flex justify-center rounded-md" href="/times">
+                    <a class="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover" href="/times">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path
@@ -53,8 +53,24 @@
                             <div id="calendar_weekdays"></div>
                             <div id="calendar_content"></div>
                         </div>
+                        <div class="flex mx-auto w-full" style="margin-left: 200%; overflow: hidden;">
+                            <ul class="flex flex-col bg-gray-900 p-4w  rounded-md">
+                                <li class="border-gray-400 flex flex-row mb-2">
+                                    <div
+                                        class="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                        <div class="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4"><i class="icon-calendar"></i></div>
+                                        <div class="flex-1 pl-1 mr-16">
+                                            <div class="font-medium">Reunião</div>
+                                            <div class="text-gray-600 text-sm">Time 2</div>
+                                        </div>
+                                        <div class="text-gray-600 text-xs">6:00 AM</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                 </div>
             </div>
+            
         </div>
     </div>
 <script>
@@ -65,7 +81,7 @@
         let anoCabecalho = cabecalho[1];
         let meses = ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"];
         let url = anoCabecalho+'-'+(meses.indexOf(mesCabecalho)+1).toString().padStart(2,'0')+'-'+event.target.textContent.toString().padStart(2, '0');
-        window.location.href = "/calendario/index/"+url;
+        window.location.href = "/calendario/"+url;
     }
 </script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

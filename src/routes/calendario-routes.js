@@ -5,6 +5,6 @@ const routes = Router();
 
 const calendarioController = new calendariosController();
 
-routes.get('/index', calendarioController.listar);
+routes.get('/:data', calendarioController.listar);
 
 module.exports = routes;
