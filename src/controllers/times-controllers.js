@@ -10,15 +10,16 @@ class TimesController {
         const time = await Time.create({
             nome: req.body.nome,
             descricao: req.body.descricao,
-            idresponsavel: 2 //TODO
+            usuarioId: req.session.usuario.id
         });
     
-        console.log(time);
-        for(let membro of req.body.membros){
-            const usuarioTime = await UsuarioTime.create({
-                timeId: time.id,
-                usuarioId: membro
-            });
+        if(req.body.membros){
+            for(let membro of req.body.membros){
+                const usuarioTime = await UsuarioTime.create({
+                    timeId: time.id,
+                    usuarioId: membro
+                });
+            }
         }
 
         res.redirect('/times');
@@ -31,7 +32,7 @@ class TimesController {
 
     async mostraCadastro(req, res) {
         const usuarios = (await Usuario.findAll()).filter(function (usuario) {
-            return usuario.id !== req.session.usuario;
+            return usuario.id !== req.session.usuario.id;
         });
         return res.render('time/cadastro', {usuarios});
     }

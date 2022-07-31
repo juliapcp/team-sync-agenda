@@ -68,7 +68,7 @@ class UsuariosController {
         
         if (confere) {
             req.session.usuario = usuarioEcontrado;
-            return res.send('Usuario e senha confirmados, vc fez o login');
+            res.redirect('/times');
         } else {
             return res.send('Senha nao confere...');
         }
