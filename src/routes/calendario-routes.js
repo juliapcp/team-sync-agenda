@@ -6,6 +6,7 @@ const routes = Router();
 
 const calendarioController = new calendariosController();
 
+routes.get('/', isAuth, calendarioController.listar);
 routes.get('/:data', isAuth, calendarioController.listar);
 
 module.exports = routes;

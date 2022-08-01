@@ -10,8 +10,7 @@ class UsuariosController {
         const usuario = await Usuario.findOne({
             where: {
                 id: req.session.usuario.id
-            },
-            include: [Time]
+            }
         })
         return res.render('usuario/perfil', { usuario });
     }
@@ -37,10 +36,16 @@ class UsuariosController {
             const usuarioBody = req.body;
             const senha = bcrypt.hashSync(usuarioBody.senha, 10); 
             
+            let caminhoImagemPerfil = '';
+            if(req.file){
+                caminhoImagemPerfil = 'images/' + req.file.filename;
+            } else {
+                caminhoImagemPerfil = 'icons/user.png';
+            }
             const usuario = {
                 nome: usuarioBody.nome,
                 email: usuarioBody.email,
-                imagem: 'images/'+req.file.filename,
+                imagem: caminhoImagemPerfil,
                 senha      
             }
 
