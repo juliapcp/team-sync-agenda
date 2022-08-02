@@ -891,6 +891,11 @@ video {
     line-height: 1rem
 }
 
+.text-sm {
+    font-size: 0.8rem;
+    line-height: 1rem
+}
+
 .font-extralight {
     font-weight: 200
 }
