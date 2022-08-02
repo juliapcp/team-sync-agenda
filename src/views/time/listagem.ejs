@@ -22,6 +22,7 @@
                     <a class="text-white/50 group-hover:text-white group-hover:smooth-hover text-center" href="/times/cadastrar">Criar
                         time</a>
                 </div>
+                <% if(times.length > 0){ %>
                 <% times.forEach(time=> { %>
                     <div
                         class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md hover:bg-gray-900/80 hover:smooth-hover">
@@ -34,7 +35,15 @@
                         <p class="text-white/50"><%= time.descricao%></p>
                     </div>
                 <% }) %>
+                <% } else { %>
+                    <div
+                        class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md hover:bg-gray-900/80 hover:smooth-hover">
 
+                        <h4 class="text-white text-2xl  text-center">
+                            Você não faz parte de nenhum time, crie um para começar
+                        </h4>
+                    </div>
+                    <% } %>
             </div>
         </div>
     </div>

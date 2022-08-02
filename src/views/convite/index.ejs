@@ -1,0 +1,45 @@
+<%- include('../includes/head') %>
+    <div class="flex items-center justify-center">
+        <div
+            class="flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 max-w-6xl sm:p-6 sm:my-2 sm:mx-4 sm:rounded-2xl">
+            <!-- Content -->
+            <div class="flex-1 px-2 sm:px-0">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-3xl font-extralight text-white/50">Convites</h3>
+
+                </div>
+                <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    <% if(convites.length > 0) {%>
+                    <% convites.forEach(convite=> { %>
+                        <div
+                            class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md hover:bg-gray-900/80 hover:smooth-hover">
+                                <img class="w-20 h-20 object-cover object-center rounded-full"
+                                    src="icons/letra-<%=convite.descTime.substring(0,1)%>.png" alt="icone" />
+                            <h4 class="text-white text-2xl font-bold capitalize text-center">
+                                <%= convite.descTime%>
+                            </h4>
+                            <p style="text-align: center;" class="text-white/50">
+                                <%= convite.nomeUsuario%> te convidou para participar em <%= new Date(convite.dataConvite).toLocaleDateString()%>
+                            </p>
+                            <div class="w3-section">
+                                <form action="/convites/<%= convite.id%>" method="POST">
+                                <input type="submit" name="resposta" class="w3-button w3-medium w3-green w3-round-large" value="Aceitar">
+                                <input type="submit" name="resposta" class="w3-button w3-medium w3-red w3-round-large" value="Recusar">
+                                </form>
+                            </div>
+                        </div>
+                        <% }) %>
+                    <% } else {%>
+                        <div
+                            class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md hover:bg-gray-900/80 hover:smooth-hover">
+                            
+                            <h4 class="text-white text-2xl  text-center">
+                                Você não possui convites pendentes
+                            </h4>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../includes/footer') %>
