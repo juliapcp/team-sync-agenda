@@ -26,7 +26,19 @@ class TimesController {
     }
 
     async listar(req, res) {    
-        const times = await Time.findAll();
+        const times = await Time.findAll(
+            {
+                include: [
+                    {
+                        model: UsuarioTime,
+                        where: {
+                            usuarioId: req.session.usuario.id
+                        },
+                        required: true
+                    }
+                ]
+            }
+        );
         return res.render('time/listagem', {times});
     }
 
