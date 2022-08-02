@@ -87,7 +87,7 @@ $(function () {
     var r = [];
     var i = ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"];
     var s = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-    var o = ["#1f2029"];
+    var o = ["#1d1247e7"];
     var u = $("#calendar");
     var a = u.find("#calendar_header");
     var f = u.find("#calendar_weekdays");

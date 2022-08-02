@@ -2,23 +2,35 @@
 
 <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
 <link rel="stylesheet" href="/css/style.css">
-    <div class="flex items-center justify-center">
-        <div style="margin-left: 25%;">
+    <div class="flex items-center justify-center ">
+        <div style="height: 98vh;" class="desfocar">
+                <select id='select' style="width: 83%; margin-top: 5%; margin-left: 3%; background-color: #e8e8e8be; display: inline-block;" class="form-select" aria-label="Default select example">
+                    <% usuarios.forEach(usuarioLista=> { %>
+                        <option value="<%=usuarioLista.id%>" <%=idUsuario == usuarioLista.id ? "selected" : ""%>>
+                            <%=usuarioLista.nome%>  
+                        </option>
+                    <% }) %>
+                </select>
+                <button onclick="window.location.href = '/calendario/<%=data.slice(0,10)%>/'+document.getElementById('select').value" type="button" style="display: inline-block;" class="btn btn-outline-secondary">Pesquisar</button>
             <div class="flex-1 px-2 sm:px-0">
                 <div class="mb-10 sm:mb-0 mt-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                        <div id="calendar">
+                        <div style="margin-left: 8%;" id="calendar">
                             <div id="calendar_header"><i class="icon-chevron-left"></i>
                                 <h1></h1><i class="icon-chevron-right"></i>
                             </div>
                             <div id="calendar_weekdays"></div>
                             <div id="calendar_content"></div>
                         </div>
-                        <div class="flex mx-auto w-full" style="margin-left: 100%;">
-                            <ul class="flex flex-col bg-gray-900 p-4w  rounded-md">
-                                <li class="border-gray-400 flex flex-row mb-2">
-                                    <div
-                                        class="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                        <div class="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4"><i class="icon-calendar"></i></div>
+                        <div class="flex mx-auto w-full">
+                            <ul class="rounded-md" style="width: 250%; margin-left: 150%;">
+                            <div id="calendar_header" style="height: 68.5714px; width: 200%;">
+                                <h1 style="font-size: 120%; margin-left: 8%;">Reuniões em <%=new Date(data).toLocaleDateString()%></h1>
+                            </div>
+
+                                <li class="border-gray-400 ">
+                                    <div style="width: 200%; background-color: #e8e8e8b0;"
+                                        class="select-none cursor-pointer rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                        <div class="flex flex-col rounded-md w-10 h-10 justify-center items-center mr-4"><i class="icon-calendar"></i></div>
                                         <div class="flex-1 pl-1 mr-16">
                                             <div class="font-medium">Reunião</div>
                                             <div class="text-gray-600 text-sm">Time 2</div>

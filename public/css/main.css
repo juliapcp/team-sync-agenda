@@ -790,6 +790,13 @@ video {
     background-color: rgb(229 231 235 / var(--tw-bg-opacity))
 }
 
+.desfocar {
+  border-radius: 10%;
+    box-shadow: 0 0 4px;
+    background-color: #2a1c5cc5;
+    margin-left: 19%;
+    margin-right: 19%;
+}
 .bg-gray-800 {
     --tw-bg-opacity: 1;
     background-color: rgb(31 41 55 / var(--tw-bg-opacity))
@@ -799,6 +806,7 @@ video {
     --tw-bg-opacity: 1;
     background-color: rgb(17 24 39 / var(--tw-bg-opacity))
 }
+
 
 .bg-gray-900\/30 {
     background-color: rgb(17 24 39 / 0.3)
