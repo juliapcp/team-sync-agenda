@@ -1,8 +1,7 @@
-const bcrypt = require('bcrypt');
 const { Time } = require('../models/Time');
 const { Usuario } = require('../models/Usuario');
 const { UsuarioTime } = require('../models/UsuarioTime');
-
+const { Convite } = require('../models/Convite');
 
 class TimesController {
 
@@ -13,11 +12,17 @@ class TimesController {
             usuarioId: req.session.usuario.id
         });
     
+        const usuarioTime = await UsuarioTime.create({
+            timeId: time.id,
+            usuarioId: req.session.usuario.id
+        });
+        
         if(req.body.membros){
-            for(let membro of req.body.membros){
-                const usuarioTime = await UsuarioTime.create({
+            for (let membro of req.body.membros) {
+                const convite = await Convite.create({
                     timeId: time.id,
-                    usuarioId: membro
+                    usuarioId: membro,
+                    stativo: true
                 });
             }
         }
