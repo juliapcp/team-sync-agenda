@@ -10,7 +10,6 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(45deg, #0b1241, #573b8a);
-    font-family: 'Roboto', sans-serif;
     height: 100vh;
     width: 100vw;
 }
@@ -403,7 +402,6 @@ nav .menu-item.highlight:hover~#sub-menu-container #sub-menu-holder #sub-menu-bo
     margin-left: auto;
     margin-right: auto;
     width: 320px;
-    font-family: 'Lato', sans-serif;
 }
 
 #calendar_weekdays div {
