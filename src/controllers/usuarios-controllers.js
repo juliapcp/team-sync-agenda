@@ -49,9 +49,9 @@ class UsuariosController {
                 senha      
             }
 
-            await Usuario.create(usuario);
+            const userDb = await Usuario.create(usuario);
         
-            req.session.usuario = usuario;
+            req.session.usuario = userDb;
             res.redirect('/times');
         } else {
             return res.send('Já existe usuário cadastrado com esse email..');

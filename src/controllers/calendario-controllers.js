@@ -1,6 +1,8 @@
 
 const { Usuario } = require('../models/Usuario');
 const { Reuniao } = require('../models/Reuniao');
+const { Time } = require('../models/Time');
+const { UsuarioTime } = require('../models/UsuarioTime');
 
 class CalendarioController {
 
@@ -18,7 +20,26 @@ class CalendarioController {
             return res.redirect('/calendario/' + new Date().toISOString().slice(0, 10));
         }
     }
-
+    async mostraCadastro(req, res) {
+        const times = await Time.findAll(
+            {
+                include: [
+                    {
+                        model: UsuarioTime,
+                        where: {
+                            usuarioId: req.session.usuario.id
+                        },
+                        required: true
+                    }
+                ]
+            }
+        );
+        return res.render('calendario/cadastro', {times});
+    }
+    async cadastrar(req, res) {
+        
+        res.redirect('/calendario');
+    }
 }
 
 module.exports = CalendarioController;

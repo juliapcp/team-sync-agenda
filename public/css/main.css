@@ -1069,3 +1069,7 @@ video {
     border-radius: 50%;
     width: 30px;
 }
+
+input {
+    padding: 2%;
+}

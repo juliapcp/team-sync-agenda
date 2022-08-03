@@ -41,6 +41,5 @@ app.use('*', (req, res) => {
     return res.status(404).render('notFound')
 })
 
-app.listen(3000, () => {
-    console.log('Listening at 3000');
-})
+const port = process.env.PORT;
+app.listen(port, () => console.log('Server iniciado na porta ' + port));

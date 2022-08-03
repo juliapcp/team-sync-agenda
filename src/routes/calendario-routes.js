@@ -7,6 +7,8 @@ const routes = Router();
 const calendarioController = new calendariosController();
 
 routes.get('/', isAuth, calendarioController.listar);
+routes.get('/cadastrar', isAuth, calendarioController.mostraCadastro);
+routes.post('/cadastrar', isAuth, calendarioController.cadastrar);
 routes.get('/:data/', isAuth, calendarioController.listar);
 routes.get('/:data/:idUsuario', isAuth, calendarioController.listar);
 

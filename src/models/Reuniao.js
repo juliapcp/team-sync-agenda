@@ -8,7 +8,7 @@ class Reuniao extends Model {
         dataFinal.setDate(dataFinal.getDate()+1);
         const [results] = await sequelizeCon.query(`
                 select 
-                    reuniaos.descricao as "descReuniao", times.descricao as "descTime", "horaReuniao" 
+                    reuniaos.descricao as "descReuniao", times.descricao as "descTime", "horaInicialReuniao", "horaFinalReuniao" 
                 from
                     reuniaos
                 left join usuariotimes on
@@ -25,7 +25,8 @@ class Reuniao extends Model {
 
 Reuniao.init({
     dataReuniao: DataTypes.DATE,
-    horaReuniao: DataTypes.TIME,
+    horaInicialReuniao: DataTypes.TIME,
+    horaFinalReuniao: DataTypes.TIME,
     descricao: DataTypes.STRING
 }, {
     sequelize: sequelizeCon,

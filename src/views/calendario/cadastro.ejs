@@ -1,0 +1,133 @@
+<%- include('../includes/head') %>
+    <div class="flex items-center justify-center">
+        <div
+            class="flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 max-w-6xl sm:p-6 sm:my-2 sm:mx-4 sm:rounded-2xl">
+            <div class="flex-1 px-2 sm:px-0">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-3xl font-extralight text-white/50">Nova reunião</h3>
+
+                </div>
+                <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    <div class="wrap-login100 p-t-5 p-b-90">
+                        <form class="login100-form validate-form flex-sb flex-w" action="/calendario/cadastrar"
+                            method="POST">
+                            <table style="width:100%;">
+                                <tbody>
+                                    <tr>
+                                        <td><label class="font-extralight text-white/50" for="descricao">Descrição:
+                                            </label>
+                                        </td>
+                                        <td><label class="font-extralight text-white/50" for="descricao">Data:
+                                            </label>
+                                        </td>
+                                        <td><label class="font-extralight text-white/50" for="descricao">Horário inicial:
+                                            </label>
+                                        </td>
+                                        <td><label class="font-extralight text-white/50" for="descricao">Horário final:
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input name="descricao" type="text" id="descricao" 
+                                                class="w3-white w3-border w3-round-large" placeholder="Descrição"
+                                                required>
+                                        </td>
+                                        <td>
+                                            <input name="dataReuniao" type="date" id="dataReuniao"
+                                                class="w3-white w3-border w3-round-large " placeholder="Data"
+                                                required>
+                                        </td>
+                                        <td>
+                                            <input name="horaInicialReuniao" type="time" id="horaInicialReuniao"
+                                                class="w3-white w3-border w3-round-large " placeholder="Horário Inicial"
+                                                required>
+                                        </td>
+                                        <td>
+                                            <input name="horaFinalReuniao" type="time" id="horaFinalReuniao"
+                                                class="w3-white w3-border w3-round-large " placeholder="Horário Final"
+                                                required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="font-extralight text-white/50" for="time">Time:
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select id='select'
+                                                style="width: 200%; display: inline-block;"
+                                                class="form-select" aria-label="Default select example" required>
+                                                <option value="" selected disabled>
+                                                    Selecionar time
+                                                </option>
+                                                <% times.forEach(time=> { %>
+                                                    <option value="<%=time.id%>">
+                                                        <%=time.nome%>
+                                                    </option>
+                                                <% }) %>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <button type="submit"  style="float: right"
+                                                class="w3-button w3-green">Cadastrar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let horaInicial = document.getElementById("horaInicialReuniao");
+        let horaFinal = document.getElementById("horaFinalReuniao");
+        let data = document.getElementById("dataReuniao");
+            horaFinal.addEventListener("change", function (event) {
+                if (horaFinal.value <= horaInicial.value) {
+                    horaFinal.setCustomValidity("A hora final deve ser posterior à inicial");
+                    horaFinal.value = "--:--";
+                    horaFinal.reportValidity()
+                } else if(!horaFinal.value <= horaInicial.value) {
+                    horaFinal.setCustomValidity("");
+                } else if(horaFinal.value < '08:00' || horaFinal.value > '16:00'){
+                    horaFinal.value = "--:--";
+                    horaFinal.setCustomValidity("Deve ser entre 08:00 e 16:00");
+                    horaFinal.reportValidity()
+                } else {
+                    horaFinal.setCustomValidity("");
+                }
+            });
+            horaInicial.addEventListener("change", function (event) {
+                if (horaInicial.value < '08:00' || horaInicial.value > '16:00') {
+                    horaInicial.value = "--:--";
+                    horaInicial.setCustomValidity("Deve ser entre 08:00 e 16:00");
+                    horaInicial.reportValidity()
+                } else {
+                    horaInicial.setCustomValidity("");
+                }
+            });
+            data.addEventListener("change", function (event) {
+                if (isFinalDeSemana(new Date(data.value))) {
+                    data.value = new Date();
+                    data.setCustomValidity("Deve ser um dia útil (Seg, Ter, Qua, Qui, Sex)");
+                    data.reportValidity()
+                } else{
+                    data.setCustomValidity("");
+                }
+
+            });
+
+        
+        function isFinalDeSemana(data) {
+            console.log(data.getDay())
+            return data.getDay() === 6 || data.getDay() === 5;
+        }
+    </script>
+
+    <%- include('../includes/footer') %>
