@@ -4,21 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Team Sync</title>
-    <link rel="stylesheet" href="/css/login.css">
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+    <link rel="stylesheet" href="/css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!DOCTYPE html>
-    <html>
+                    
 
-    <head>
-        <title>Slide Navbar</title>
-        <link rel="stylesheet" type="text/css" href="slide navbar style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-    </head>
-
-    <body>
         <div class="main">
             <input type="checkbox" id="chk" aria-hidden="true">
 
@@ -29,7 +21,12 @@
                     <input type="email" name="email" placeholder="E-mail" required="">
                     <input type="password" name="senha" placeholder="Senha" required="">
                     <input type="file" name="imagem" placeholder="imagem" accept="image/png, image/jpeg">
-                    <button type="submit">Cadastrar</button>
+                    <button class="botao" type="submit">Cadastrar</button>
+                    <% if(typeof msg !="undefined" ){ %>
+                        <p style="text-align: center; color:white;">
+                            <%=msg.mensagem%>
+                        </p>
+                    <%}%>    
                 </form>
             </div>
 
@@ -38,14 +35,12 @@
                     <label for="chk" aria-hidden="true">Login</label>
                     <input type="email" name="email" placeholder="Email" required="">
                     <input type="password" name="senha" placeholder="Senha" required="">
-                    <button type="submit">Login</button>
+                    <button class="botao" type="submit">Login</button>
                 </form>
             </div>
         </div>
-    </body>
 
-    </html>
-
+        
 </body>
 
 </html>

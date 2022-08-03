@@ -37,7 +37,10 @@
                                             <div class="font-medium"><%=reuniao.descReuniao%></div>
                                             <div class="text-gray-600 text-sm"><%=reuniao.descTime%></div>
                                         </div>
-                                        <div class="text-gray-600 text-xs"><%=reuniao.horaInicialReuniao.substring(0,5)%> - <%=reuniao.horaFinalReuniao.substring(0,5)%></div>
+                                        <div>
+                                            <div class="text-gray-600 text-xs"><%=reuniao.horaInicialReuniao.substring(0,5)%> - <%=reuniao.horaFinalReuniao.substring(0,5)%></div>
+                                            <div class="text-gray-600 text-xs"><%=reuniao.nomeUsuario%></div>
+                                        </div>
                                     </div>
                                 </li>
                         <% })} else {%>

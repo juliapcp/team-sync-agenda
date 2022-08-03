@@ -53,6 +53,32 @@ class TimesController {
         });
         return res.render('time/cadastro', {usuarios});
     }
+
+    async mostraPerfil(req, res) {
+        const time = await Time.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [
+                {
+                    model: Usuario,
+                    required: false
+                }
+            ]
+        })
+        const membros = await UsuarioTime.findAll({
+            where: {
+                timeId: req.params.id
+            },
+            include: [
+                {
+                    model: Usuario,
+                    required: false
+                }
+            ]
+        })
+        return res.render('time/perfil', { time, membros });
+    }
 }
 
 module.exports = TimesController;

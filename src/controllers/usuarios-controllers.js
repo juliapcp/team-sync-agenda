@@ -54,7 +54,10 @@ class UsuariosController {
             req.session.usuario = userDb;
             res.redirect('/times');
         } else {
-            return res.send('Já existe usuário cadastrado com esse email..');
+            const msg = {};
+            msg.titulo = "E-mail em uso";
+            msg.mensagem = "Já existe um usuário cadastrado com o email";
+            return res.render('usuario/login', {msg});
         }
     }
 
@@ -67,7 +70,12 @@ class UsuariosController {
             }
         });
 
-        if (!usuarioEcontrado) return res.send('Usuario nao encontrado');
+        if (!usuarioEcontrado) {
+            const msg = {};
+            msg.titulo = "Email ou senha incorretos";
+            msg.mensagem = "Email ou senha incorretos";
+            return res.render('usuario/login', { msg });
+        } 
 
         const confere = bcrypt.compareSync(senha, usuarioEcontrado.senha);
         
@@ -75,7 +83,10 @@ class UsuariosController {
             req.session.usuario = usuarioEcontrado;
             res.redirect('/times');
         } else {
-            return res.send('Senha nao confere...');
+            const msg = {};
+            msg.titulo = "Email ou senha incorretos";
+            msg.mensagem = "Email ou senha incorretos";
+            return res.render('usuario/login', { msg });
         }
         
     }

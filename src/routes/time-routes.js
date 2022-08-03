@@ -13,6 +13,7 @@ routes.get('/cadastrar', isAuth, timesController.mostraCadastro);
 
 routes.post('/cadastrar', isAuth, timesController.cadastrar);
 
-routes.post('/', isAuth, upload.single('meuarquivo'), timesController.cadastrar);
+routes.get('/:id', isAuth, timesController.mostraPerfil);
+
 
 module.exports = routes;
