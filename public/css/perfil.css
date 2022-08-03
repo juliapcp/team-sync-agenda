@@ -1,0 +1,35 @@
+.container {
+    height: 60vh;
+}
+
+.card {
+
+    width: 380px;
+    border: solid 5px rgb(219, 219, 219);
+    border-radius: 15px;
+    padding: 2px;
+    background-color: rgba(171, 172, 207, 0.719);
+    position: relative;
+    height: 200px;
+}
+
+
+.user {
+    position: relative;
+}
+
+.profile img {
+    height: 84px;
+    width: 90px;
+    margin-top: 0.2px;
+}
+
+.profile {
+    position: absolute;
+    top: -50px;
+    left: 38%;
+    height: 90px;
+    width: 90px;
+    border: 3px solid rgb(219, 219, 219);
+    border-radius: 50%;
+}

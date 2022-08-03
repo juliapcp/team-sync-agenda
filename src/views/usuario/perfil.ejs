@@ -1,8 +1,34 @@
 <%- include('../includes/head') %>
+<link rel="stylesheet" href="/css/perfil.css">
     <div class="flex items-center justify-center">
                 <div class="flex justify-between items-center">
-                    <h3 class="text-3xl font-extralight text-white/50">Perfil</h3>
+                    <div class="container d-flex justify-content-center align-items-center">
 
+                        <div class="card">
+
+                            <div class="user text-center">
+
+                                <div class="profile">
+
+                                    <img src="/<%= usuario.imagem%>" class="rounded-circle">
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mt-5 text-center">
+
+                                <h4 class="mb-0"><b><%= usuario.nome%></b></h4>
+                                <span class="d-block mb-2"><%= usuario.email%></span>
+                                <span class="d-block mb-2" style="color:rgb(50, 1, 83)"> <i class="fa fa-cake-candles"></i>   no Team Sync desde <%= new Date(usuario.created_at).toLocaleDateString()%></span>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
                 
         </div>

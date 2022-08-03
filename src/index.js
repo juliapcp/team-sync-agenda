@@ -21,6 +21,10 @@ app.set('views', './src/views');
 
 app.use(express.static('public'));
 
+app.get('/', (req, res) => {
+    res.redirect('/times');
+});
+
 const usuarioRoutes = require('./routes/usuario-routes');
 app.use('/usuarios', usuarioRoutes);
 
@@ -32,6 +36,10 @@ app.use('/calendario', calendarioRoutes);
 
 const conviteRoutes = require('./routes/convite-routes');
 app.use('/convites', conviteRoutes);
+
+app.use('*', (req, res) => {
+    return res.status(404).render('notFound')
+})
 
 app.listen(3000, () => {
     console.log('Listening at 3000');
