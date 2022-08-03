@@ -18,8 +18,25 @@ class Reuniao extends Model {
                 where
                     usuariotimes."usuarioId" = ${ idUsuario } 
                     and reuniaos."dataReuniao" >= '${data}'
-                    and reuniaos."dataReuniao" < '${dataFinal.toISOString().substring(0,10)}'`);
+                    and reuniaos."dataReuniao" < '${dataFinal.toISOString().substring(0,10)}'
+                order by "horaInicialReuniao"`);
         return results;
+    }
+    async isTimeOcupadoNoPeriodo(timeId, data, horaInicial, horaFinal) {
+        const dataFinal = new Date(data + 'T00:00');
+        dataFinal.setDate(dataFinal.getDate()+1);
+        const [results] = await sequelizeCon.query(`
+                select
+                    *
+                from
+                    reuniaos
+                where
+                    "timeId" = ${timeId}
+                    and "dataReuniao" >= '${data}'
+                    and "dataReuniao" < '${dataFinal.toISOString().substring(0, 10)}'
+                    and	('${horaInicial}' < "horaFinalReuniao" AND
+                    '${horaFinal}' > "horaInicialReuniao") `);
+        return results.length > 0;
     }
 }
 

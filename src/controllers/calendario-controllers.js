@@ -37,7 +37,36 @@ class CalendarioController {
         return res.render('calendario/cadastro', {times});
     }
     async cadastrar(req, res) {
-        
+        const ReuniaoModel = new Reuniao();
+        const isTimeOcupadoNoPeriodo = await ReuniaoModel.isTimeOcupadoNoPeriodo(req.body.timeId, req.body.dataReuniao, req.body.horaInicialReuniao, req.body.horaFinalReuniao);
+
+        if(isTimeOcupadoNoPeriodo) {
+            const msg = {}; 
+            msg.titulo = "Horário Indisponível";
+            msg.mensagem = "O time estará ocupado na faixa de horários indicada.";
+            const times = await Time.findAll(
+                {
+                    include: [
+                        {
+                            model: UsuarioTime,
+                            where: {
+                                usuarioId: req.session.usuario.id
+                            },
+                            required: true
+                        }
+                    ]
+                }
+            );
+            return res.render('calendario/cadastro', {msg,times})
+        }
+        const reuniao = await Reuniao.create({
+            dataReuniao: req.body.dataReuniao,
+            horaInicialReuniao: req.body.horaInicialReuniao,
+            horaFinalReuniao: req.body.horaFinalReuniao,
+            descricao: req.body.descricao,
+            timeId: req.body.timeId,
+            usuarioId: req.session.usuario.id
+        });
         res.redirect('/calendario');
     }
 }
