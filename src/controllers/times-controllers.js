@@ -79,6 +79,44 @@ class TimesController {
         })
         return res.render('time/perfil', { time, membros });
     }
+
+    async mostraAdicionarMembro(req, res){
+        const membros = await UsuarioTime.findAll({
+            where: {
+                timeId: req.params.id
+            }
+        })
+        const membrosArrayId = [];
+        membros.forEach(membro => {
+            membrosArrayId.push(membro.usuarioId);
+        })
+        console.log(membrosArrayId);
+        const usuarios = (await Usuario.findAll()).filter(function (usuario) {
+            console.log(membrosArrayId.indexOf(usuario.id))
+            console.log(usuario.id)
+            return membrosArrayId.indexOf(usuario.id) == -1;
+        });
+        
+        const time = await Time.findOne({
+            where: {
+                id: req.params.id
+            }
+        }) 
+        if(time.usuarioId == req.session.usuario.id){
+            return res.render('time/adicionarMembro', { usuarios, time });
+        } else {
+            return res.redirect('/times/'+time.id)
+        }
+    }
+
+    async adicionarMembro(req, res) {
+        const convite = await Convite.create({
+            timeId: req.params.id,
+            usuarioId: req.body.membro,
+            stativo: true
+        });
+        return res.redirect('/times/' + req.params.id)
+    }
 }
 
 module.exports = TimesController;

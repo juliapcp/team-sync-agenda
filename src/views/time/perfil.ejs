@@ -22,12 +22,14 @@
                                 <h4 class="mb-0"><b><%= time.nome%></b></h4>
                                 <span class="d-block mb-2"><%= time.descricao%></span>
                                 <span class="d-block mb-2">Criado por <%=time.usuario.nome%></span>
+                                <% if(usuario.id == time.usuarioId){ %>
+                                    <span class="d-block mb-2"><a href="/times/adicionarMembro/<%=time.id%>"><i class="fa fa-user-plus"></i> Adicionar membro</a></span>
+                                <%}%>
                                 <div id="membros">
                                 <% membros.forEach(membro=> { %>
-
                                     <img src="/<%= membro.usuario.imagem%>" class="rounded-circle">
                                     <p><%=membro.usuario.nome%></p>
-                                 <%})%>
+                                <%})%>
                                 </div>
 
 

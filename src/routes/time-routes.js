@@ -13,6 +13,10 @@ routes.get('/cadastrar', isAuth, timesController.mostraCadastro);
 
 routes.post('/cadastrar', isAuth, timesController.cadastrar);
 
+routes.get('/adicionarMembro/:id', isAuth, timesController.mostraAdicionarMembro);
+
+routes.post('/adicionarMembro/:id', isAuth, timesController.adicionarMembro);
+
 routes.get('/:id', isAuth, timesController.mostraPerfil);
 
 
